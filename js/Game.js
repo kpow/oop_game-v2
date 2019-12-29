@@ -10,11 +10,11 @@
         this.totalMisses = 5
         // the phrases used for game content
         this.phrases =[
-            "It is a scientific fact that gratitude reciprocates",
-            "Life is barely long enough to get good at one thing",
-            "Life is a series of commas",
-            "So be careful what you get good at",
-            "just fine with me because that keeps me with somebody to keep on chasing"
+         new Phrase("It is a scientific fact that gratitude reciprocates"),
+         new Phrase("Life is barely long enough to get good at one thing"),
+         new Phrase("Life is a series of commas"),
+         new Phrase("So be careful what you get good at"),
+         new Phrase("just fine with me because that keeps me with somebody to keep on chasing")
         ]
         // this holds a phrase object
         this.activePhrase = null
@@ -23,19 +23,9 @@
      startScreen = document.querySelector('#overlay')
 
      startGame(){
-        /// a couple of items to reset the game
-        // remove old phrase
-        document.querySelector('#phrase ul').innerHTML = ''
-        // reset keyboard
-        document.querySelectorAll('.key').forEach(key => {
-            key.removeAttribute('disabled')
-            key.classList.remove('chosen','wrong','animated', 'quick-pop', 'heartBeat')
+        // get game back to start state
+        this.resetGame();
 
-        })
-        // reset score
-        document.querySelectorAll('img[src="images/lostHeart.png"]')
-        .forEach(image=>image.setAttribute('src','images/liveHeart.png'))
-        
         // kick the game off
         //animate header
         document.querySelector('.header').classList.add('animated','pop','tada')
@@ -49,6 +39,21 @@
         console.log('activePhrase = '+this.activePhrase.phrase)
      }
 
+     resetGame(){
+        /// a couple of items to reset the game
+        // remove old phrase
+        document.querySelector('#phrase ul').innerHTML = ''
+        // reset keyboard
+        document.querySelectorAll('.key').forEach(key => {
+            key.removeAttribute('disabled')
+            key.classList.remove('chosen','wrong','animated', 'quick-pop', 'heartBeat')
+        })
+        
+        // reset score
+        document.querySelectorAll('img[src="images/lostHeart.png"]')
+        .forEach(image=>image.setAttribute('src','images/liveHeart.png'))
+     }
+
       /**
       * Selects random phrase from phrases property
       * @return {Object} Phrase object chosen to be used
@@ -57,7 +62,7 @@
         // generate random number 0-4
         const randomId = Math.round(Math.random() * (this.phrases.length-1))
         // return a new phrase selected with random number from phrases property
-        return new Phrase(this.phrases[randomId])
+        return this.phrases[randomId]
      }
 
       /**
@@ -131,8 +136,9 @@
         this.startScreen.className = this.checkForWin() ? 'win' : 'lose'
         //remove some old css classes
         document.querySelector('.header').classList.remove('animated','pop','tada')
-
         // display start screen
-        this.startScreen.style.display = 'block';
+        this.startScreen.style.zIndex = 1000
+        this.startScreen.style.display = 'flex'
+
      }
  }
