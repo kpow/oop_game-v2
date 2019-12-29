@@ -8,12 +8,17 @@ let game = null
 const startButton = document.querySelector('#btn__reset')
 const keys = document.querySelector('#qwerty')
 
+//event listener for keyboard
+document.addEventListener('keyup',e=>{
+    game.handleInteraction(String.fromCharCode(e.keyCode).toLowerCase())
+})
+
 // add event listener for the onscreen keyboard
 keys.addEventListener('click',e => {
     // make sure its a key if it is lets handle business
-    if(e.target.className === 'key') game.handleInteraction(e)
-
+   if(e.target.tagName === 'BUTTON') game.handleInteraction(e.target.textContent)
 })
+
 // click handler for start button 
 startButton.addEventListener('click', e =>{
     game = new Game();

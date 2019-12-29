@@ -29,11 +29,16 @@
         // reset keyboard
         document.querySelectorAll('.key').forEach(key => {
             key.removeAttribute('disabled')
-            key.classList.remove('chosen','wrong')
+            key.classList.remove('chosen','wrong','animated', 'quick-pop', 'heartBeat')
+
         })
         // reset score
         document.querySelectorAll('img[src="images/lostHeart.png"]')
-        .forEach(image=>image.setAttribute('src','images/liveHeart.png')) 
+        .forEach(image=>image.setAttribute('src','images/liveHeart.png'))
+        
+        // kick the game off
+        //animate header
+        document.querySelector('.header').classList.add('animated','pop','tada')
         // set an active phrase
         this.activePhrase = this.getRandomPhrase()
         // render that phrase on screen
@@ -59,21 +64,21 @@
       * Handles onscreen keyboard button clicks
       * @param (event object) from clicked button element
       */
-
-     handleInteraction(e){
-        // get letter from event object
-        const letter = e.target.textContent
+     handleInteraction(letter){
+        // get keyboard target from letter
+        const keyboardTarget = document.querySelector(`#qwerty .${letter}`)
         // disable button
-        e.target.setAttribute('disabled', true)
+        keyboardTarget.setAttribute('disabled', true)
+        keyboardTarget.classList.add('animated','quick-pop','heartBeat')
         // check to see if letter is in phrase
         if(this.activePhrase.checkLetter(letter)){
          // if it is show the letter and update keyboard
          this.activePhrase.showMatchedLetter(letter)
-         e.target.classList.add('chosen')
+         keyboardTarget.classList.add('chosen')
         }else{
          //if not adjust life update keyboard  
          this.removeLife()
-         e.target.classList.add('wrong')
+         keyboardTarget.classList.add('wrong')
         }
 
         // if we have a win fire a gameover
@@ -88,17 +93,16 @@
      removeLife(){
         // if its not game over
         if(this.missed < this.totalMisses){
-           // adjusatr scoreboard
+           // select first liveheart, change to lost heart
             const lifeElement = document.querySelector('img[src="images/liveHeart.png"]') 
             lifeElement.src = 'images/lostHeart.png'
             // increment missed property
             this.missed++;
         }
-
-        // check to see if gameover
+        
         if(this.missed === this.totalMisses){
             this.gameOver();
-        }
+        }// check to see if gameover
      }
 
      /**
@@ -122,9 +126,12 @@
         // get reference to message element
         const messageElement = document.querySelector('#game-over-message')
         // change text for game state
-        messageElement.textContent = this.checkForWin() ? 'win' : 'lose'
+        messageElement.textContent = this.checkForWin() ? 'You Win!' : 'You lose!'
         // add class based on state
         this.startScreen.className = this.checkForWin() ? 'win' : 'lose'
+        //remove some old css classes
+        document.querySelector('.header').classList.remove('animated','pop','tada')
+
         // display start screen
         this.startScreen.style.display = 'block';
      }

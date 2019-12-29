@@ -20,13 +20,13 @@
             const element  =  document.createElement('li')
             if(letter !== ' '){
                 // if its text build a text element
-                element.classList.add("hide", "letter", letter);
+                element.classList.add("hide", "letter", letter, 'tada');
                 element.textContent = letter 
             }else{
                 // if its a space a space element
                 element.classList.add("space");
             }
-            // add thr element to the roor element
+            // add the element to the root element
             phraseElement.appendChild(element)
         } 
     }
@@ -46,11 +46,12 @@
     */
     showMatchedLetter(letter){
         // grab all elements with that letter the the letter class
-        const matchedElements = document.querySelectorAll(`.${letter}`)
+        const matchedElements = document.querySelectorAll(`#phrase .${letter}`)
         // loop through them and se the classes
         matchedElements.forEach(element=>{
             element.classList.remove('hide')
             element.classList.add('show')
+            element.classList.add('animated','quick-pop','heartBeat')
         })
     }
 

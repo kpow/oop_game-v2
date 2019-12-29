@@ -18,6 +18,20 @@
 
 /* main */
 
+
+.pop {
+  animation-duration: 3s;
+  animation-delay: 0.15s;
+  animation-iteration-count: 3;
+}
+
+.quick-pop {
+  animation-duration: 1s;
+  animation-delay: 0;
+  animation-iteration-count: 1;
+}
+
+
 * {
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
@@ -28,6 +42,10 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  background: #8e9eab;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #eef2f3, #8e9eab);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #eef2f3, #8e9eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
 }
 
 li, ol, ul {
@@ -54,6 +72,7 @@ button {
   font-size: var(--font-size-medium);
   background-color: var(--color-keys-light);
   border-radius: 5px;
+  border: var(--color-keys) 1px solid;
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
   transition: var(--transition);
@@ -101,6 +120,7 @@ button {
   color: transparent;
   background: var(--color-neutral-light);
   border-radius: 5px;
+  border: var(--color-keys) 1px solid;
 }
 
 .space {
@@ -180,7 +200,10 @@ button {
 }
 
 .start {
-  background-color: #3a3f58;
+  background: #41295a;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #2F0743, #41295a);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #2F0743, #41295a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 .start a {
