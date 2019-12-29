@@ -50,8 +50,7 @@
         // loop through them and se the classes
         matchedElements.forEach(element=>{
             element.classList.remove('hide')
-            element.classList.add('show')
-            element.classList.add('animated','quick-pop','heartBeat')
+            element.classList.add('show','animated','quick-pop','heartBeat')
         })
     }
 
