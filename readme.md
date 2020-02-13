@@ -19,6 +19,7 @@ To get running locally:
 
 ## Extra Credit
 
+
 - I added animations when letters are matched and to the headers when they display. I added some gradient backgrounds. along with css classes for animation timing and loops.
 
 ## Authors
