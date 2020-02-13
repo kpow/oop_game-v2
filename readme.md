@@ -1,5 +1,7 @@
 **phrase hunter**
 
+demo url -> https://kpow.github.io/oop_game-v2/.
+
 # Phrase-Hunter
 
 Hangman clone in javascript using a OOJS approach. I am going for exceeds, I have added keyboard interaction and added micro-interactions (animations) and added a few new styles.
